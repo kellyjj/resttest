@@ -24,6 +24,11 @@ if response.status_code==200:
     #to call here.  treat it like a array/dictionary.
     for feat in jsonstr['features']:
         print("Route  "+str(feat['attributes']['Route'])+"   County  "+feat['attributes']['County']+"   District "+str(feat['attributes']['District']))
+
+#we are going to filter down the results.  1st grab the sub object we want
+    thefeatures = jsonstr['features']
+
+    print(thefeatures)
 else :
     print("the status code was "+str(response.status_code))
 
