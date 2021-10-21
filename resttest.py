@@ -6,11 +6,14 @@ import requests
 
 #the base url for the rest end point
 url = "http://gisdata.dot.ca.gov/arcgis/rest/services/Highway/SHN_Postmiles_Tenth/MapServer/0/query?where=Route%3D41+and+county%3D%27FRE%27+and+District%3D6&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=json"
+url2 = "http://gisdata.dot.ca.gov/arcgis/rest/services/Highway/SHN_Postmiles_Tenth/MapServer/0/query"
 
-
+myparams = {"f":"json","where":"Route=41 and county='FRE' and District=6","outFields":"*","spatialRel":"esriSpatialRelIntersects"}
 #the request object is where we call get/put/post of what ever url we are working with  url is the end point we are access.  the url will have to 
 #be formated for what ever it is we are dealing with
-response = requests.get(url)
+response = requests.get(url2,params=myparams)
+
+print(response.url)
 
 #standard response code cehck.  this is the normal 200, 404, or whatever
 if response.status_code==200:
@@ -28,7 +31,7 @@ if response.status_code==200:
 #we are going to filter down the results.  1st grab the sub object we want
     thefeatures = jsonstr['features']
 
-    print(thefeatures)
+    #print(thefeatures)
 else :
     print("the status code was "+str(response.status_code))
 
