@@ -1,5 +1,5 @@
 #rest services tool.  written in python3
-
+#kjj 10-20-21  added exmample of using parameters in a querry.
 
 import json
 import requests
